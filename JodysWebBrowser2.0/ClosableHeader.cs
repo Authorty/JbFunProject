@@ -26,7 +26,7 @@ namespace JodysWebBrowser2._0
             // Attach to the CloseableHeader events
             // (Mouse Enter/Leave, Button Click, and Label resize)
             //closableTabHeader.button_close.MouseEnter +=
-            //   new MouseEventHandler(button_close_MouseEnter);
+            //   new MouseEventHandler(button_close_MouseEnter); 
             //closableTabHeader.button_close.MouseLeave +=
             //   new MouseEventHandler(button_close_MouseLeave);
             //closableTabHeader.button_close.Click +=
