@@ -33,7 +33,7 @@ namespace JodysWebBrowser2._0
             //   new RoutedEventHandler(button_close_Click);
             //closableTabHeader.label_TabTitle.SizeChanged +=
             //   new SizeChangedEventHandler(label_TabTitle_SizeChanged);
-             
+              
 
         }
         //public string Title
