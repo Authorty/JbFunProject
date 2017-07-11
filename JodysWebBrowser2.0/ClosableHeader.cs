@@ -22,20 +22,12 @@ namespace JodysWebBrowser2._0
             // Assign the usercontrol to the tab header
             this.Header = closableTabHeader;
 
-            closableTabHeader.button_close.Visibility = Visibility.Visible;
-
             //Attach to the CloseableHeader events
             //(Mouse Enter / Leave, Button Click, and Label resize)
-            closableTabHeader.button_close.MouseEnter +=
-               new MouseEventHandler(button_close_MouseEnter);
-            closableTabHeader.button_close.MouseLeave +=
-               new MouseEventHandler(button_close_MouseLeave);
-           closableTabHeader.button_close.Click +=
-               new RoutedEventHandler(button_close_Click);
-            closableTabHeader.label_TabTitle.SizeChanged +=
-               new SizeChangedEventHandler(label_TabTitle_SizeChanged);
-
-
+            closableTabHeader.button_close.MouseEnter += new MouseEventHandler(button_close_MouseEnter);
+            closableTabHeader.button_close.MouseLeave += new MouseEventHandler(button_close_MouseLeave);
+            closableTabHeader.button_close.Click += new RoutedEventHandler(button_close_Click);
+            closableTabHeader.label_TabTitle.SizeChanged += new SizeChangedEventHandler(label_TabTitle_SizeChanged);
         }
         public string Title
         {
@@ -48,9 +40,6 @@ namespace JodysWebBrowser2._0
                 ((ClosableHeader)this.Header).label_TabTitle.Content = value;
             }
         }
-
-
-
 
         protected override void OnSelected(RoutedEventArgs e)
         {
@@ -96,12 +85,8 @@ namespace JodysWebBrowser2._0
         {
             if (((ClosableHeader)Header).label_TabTitle.Content.ToString() != "New Page")
             {
-               
                 ((TabControl)this.Parent).Items.Remove(this);
-                
             }
-            
-
         }
         // Label SizeChanged - When the Size of the Label changes
         // (due to setting the Title) set position of button properly
@@ -110,6 +95,5 @@ namespace JodysWebBrowser2._0
             ((ClosableHeader)this.Header).button_close.Margin = new Thickness(
                ((ClosableHeader)this.Header).label_TabTitle.ActualWidth + 5, 3, 4, 0);
         }
-
     }
 }
