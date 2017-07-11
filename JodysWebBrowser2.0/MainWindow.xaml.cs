@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CefSharp.Wpf;
 using CefSharp.Wpf.Internals;
+using JodysWebBrowser2._0.controls;
 
 namespace JodysWebBrowser2._0
 {
@@ -33,6 +34,8 @@ namespace JodysWebBrowser2._0
         {
             InitializeComponent();
             _window = this.JBrowser;
+            tabControl.Items.Add(new ClosableTab() { Title = "AddTabItem", Content = new ChromiumWebBrowser() { Name = "NewAddTab"  } });
+            tabControl.Items.Add(new ClosableTab() { Title = "New Page", Content = new ChromiumWebBrowser() { Name = "NewPage" } });
         }
 
         private void btn_stop_Click(object sender, RoutedEventArgs e)
@@ -48,25 +51,25 @@ namespace JodysWebBrowser2._0
 
         private void btn_home_Click(object sender, RoutedEventArgs e)
         {
-            webBrowser.Load("http://www.google.com");
+            //webBrowser.Load("http://www.google.com");
             
         }
 
         private void btn_forward_Click(object sender, RoutedEventArgs e)
         {
-            if (webBrowser.CanGoForward)
-            {
-                //webBrowser.WebBrowser.;
-            }
+            //if (webBrowser.CanGoForward)
+            //{
+            //    //webBrowser.WebBrowser.;
+            //}
         }
 
         private void btn_back_Click(object sender, RoutedEventArgs e)
         {
-            if (webBrowser.CanGoBack)
-            {
-                //webBrowser.GoBack();
+            //if (webBrowser.CanGoBack)
+            //{
+            //    //webBrowser.GoBack();
 
-            }
+            //}
         }
         private void btn_go_Click(object sender, RoutedEventArgs e)
         {
@@ -133,31 +136,42 @@ namespace JodysWebBrowser2._0
         private void TabChanged(object sender, SelectionChangedEventArgs e)
         {
             var tab = (TabControl)sender;
-
-            var selectedTab = (TabItem)tab.SelectedItem;
+            
+            var selectedTab = (ClosableTab)tab.SelectedItem;
             if (selectedTab != null)
             {
-                if (selectedTab.Header.ToString() == "New Page")
+                var header = (ClosableHeader)selectedTab.Header;
+                if (header != null)
                 {
-                    var currentTabIndex = selectedTab.TabIndex;
+                    if (header.label_TabTitle.Content.ToString() == "New Page")
+                    {
+                        //var currentTabIndex = selectedTab.TabIndex;
 
-                    //webBroswer.URL = "http://www.thenorthernhandyman.org";
-                    //TestWPFBrow.
-                    // tabControl.Items.Remove(selectedTab);
-                    var newTabAdded = new ChromiumWebBrowser()
-                    { Name = "NewAddTab", Address ="http://www.google.com"
-                     
-                    };
-                    tabControl.Items.Add(new ClosableTab() { Header = "AddTabItem", Content = new ChromiumWebBrowser() { Name = "NewAddTab" + _tabCount, Address = "htpp://www.google.com" }  });
-                    tabControl.Items.Add(new ClosableTab() { Header = "New Page", Content = new ChromiumWebBrowser() { Name = "NewPage" } });
-                    tabControl.Items.Remove(selectedTab);
-                }
-                else
-                {
-                    _currentTab = selectedTab;
-                    
+
+                        //var tabtest = new ClosableTab();
+                        //tabtest.Title = "smallTitle";
+                        //tabtest.Header = "smallTitle";
+                        //tabControl.Items.Add(tabtest);
+                        if (tab.Items.Count == 1)
+                        {
+                            this.Close();
+                        }
+                        var newTab = new ClosableTab() { Title = "AddTabItem", Content = new ChromiumWebBrowser() { Name = "NewAddTab" + _tabCount, Address = "htpp://www.google.com" } };
+
+                        tabControl.Items.Add(newTab);
+                        tabControl.Items.Add(new ClosableTab() { Title = "New Page", Content = new ChromiumWebBrowser() { Name = "NewPage" } });
+                        tabControl.Items.Remove(selectedTab);
+                        
+                    }
+                    else
+                    {
+                        _currentTab = selectedTab;
+
+                    }
                 }
             }
+
+           
         }
 
         private void btn_close_click(object sender, RoutedEventArgs e)

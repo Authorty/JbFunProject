@@ -7,9 +7,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 
-      mc:Ignorable="d" 
-
-      d:DesignHeight="23" d:DesignWidth="81" Margin="0">
+      mc:Ignorable="d" Margin="0" Height="24.671" Width="111.084">
     <Grid>
         <Button Content="X"  Height="19" HorizontalAlignment="Right" Margin="0,3,4,0" 
 
